@@ -1,9 +1,13 @@
-<!-- Footer -->
-<footer id="page-footer" class="bg-body-light">
-    <div class="content py-3">
-        <div class="row font-size-sm">
-
-        </div>
+<footer class="main-footer">
+    <div class="pull-right d-none d-sm-inline-block">
+        <ul class="nav nav-primary nav-dotted nav-dot-separated justify-content-center justify-content-md-end">
+            <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0)">FAQ</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Purchase Now</a>
+            </li>
+        </ul>
     </div>
+    &copy; 2020 <a href="https://www.multipurposethemes.com/">Multi-Purpose Themes</a>. All Rights Reserved.
 </footer>
-<!-- END Footer -->

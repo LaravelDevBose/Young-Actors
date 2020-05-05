@@ -14,21 +14,29 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+//        $this->middleware('auth');
     }
 
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function index()
     {
-        if (\auth()->user()->role == 1) {
-            return view('admin.dashboard');
-        }else {
-            return view('customer.dashboard');
-        }
 
+    }
+
+    public function admin_dashboard(){
+
+        return view('admin.dashboard');
+    }
+
+    public function member_dashboard(){
+        return view('member.dashboard');
+    }
+
+    public function customer_dashboard(){
+        return view('customer.dashboard');
     }
 }

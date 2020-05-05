@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -64,18 +66,26 @@ class LoginController extends Controller
         $this->clearLoginAttempts($request);
 
         if ($request->ajax() || $request->wantsJson()) {
-            if (\auth()->user()->role == 1) {
+            if (Auth::user()->role == User::ROLE['Admin']) {
                 return response()->json([
                     'status' => 'success',
                     'message' => __('customer.Admin successfully logged in.'),
-                    'url' => route("home")
+                    'url' => route("admin.dashboard")
+                ]);
+            } else if(Auth::user()->role == User::ROLE['Member']){
+                return response()->json([
+                    'status' => 'success',
+                    'message' =>__('customer.User successfully logged in.'),
+                    'url' => route( 'member.dashboard')
+                ]);
+            }else {
+                return response()->json([
+                    'status' => 'success',
+                    'message' =>__('customer.User successfully logged in.'),
+                    'url' => route( 'home')
                 ]);
             }
-            return response()->json([
-                'status' => 'success',
-                'message' =>__('customer.User successfully logged in.'),
-                'url' => route( 'home')
-            ]);
+
         }
 
         return $this->authenticated($request, $this->guard()->user())

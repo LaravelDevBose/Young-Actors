@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::get('customer/dashboard','HomeController@customer_dashboard')->name('customer.dashboard');
+
 Route::group(["prefix" => "user", "namespace" => "Customer", "middleware" => ["auth"], "as" => "user."], function () {
 
     Route::group(["prefix" => "game", "as" => "game."], function () {

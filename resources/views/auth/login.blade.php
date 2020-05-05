@@ -1,95 +1,74 @@
-@extends('layouts.app')
+@extends('layouts.auth.app')
 @section('title', __('auth.Sign in'))
-
+@section('BgImage', asset('images/auth_bg_2.jpg'))
 @section('PageCss')
 
 @endsection
 
 @section('mainContainer')
-<div id="page-container">
-    <main id="main-container">
-        <div class="bg-image" style="background-image: url({{ asset('assets/media/photos/photo6@2x.jpg') }});">
-            <div class="hero-static bg-white-95">
-                <div class="content">
-                    <div class="row justify-content-center">
-                        <div class="col-md-8 col-lg-6 col-xl-4">
-                            <!-- Sign In Block -->
-                            <div class="block block-themed block-fx-shadow mb-0">
-                                <div class="block-header">
-                                    <h3 class="block-title">Login your account</h3>
-                                    <div class="block-options">
-                                        <a class="btn-block-option js-tooltip-enabled" href="{{ route('register') }}" data-toggle="tooltip" data-placement="left" title="" data-original-title="Sign Up">
-                                            Create new account <i class="fa fa-sign-in-alt"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="block-content">
-                                    <div class="p-sm-3 px-lg-4 py-lg-4">
-                                        <div class="text-center">
-                                            <h1 class="mb-2">Quiz</h1>
-                                            <p>Login using Credential</p>
-                                        </div>
+    <div class="auth-2-outer row align-items-center h-p100 m-0">
+        <div class="auth-2 bg-gradient-classic">
+            <div class="auth-logo font-size-30">
+                <a href="{{ route('index') }}" class="text-white"><b>{{ env('APP_NAME') }}</b></a>
+            </div>
+            <!-- /.login-logo -->
+            <div class="auth-body">
+                <p class="auth-msg text-white-50">Sign in to start your session</p>
 
-
-                                        {!! Form::open([ 'url' => "/login", 'method' =>'POST', 'class'=> 'GlobalFormValidation js-validation-signin' ]) !!}
-                                        <div class="block-content pt-0 mt-0 mb-0">
-                                            <div class="col-sm-12" style="margin-top: 5px;">
-                                                @include('layouts.admin.include.alert_process')
-                                            </div>
-                                        </div>
-                                        <div class="py-3">
-                                            <div class="form-group">
-                                                {!!Form::email('email', null,
-                                                   [
-                                                       'class'=>'form-control form-control-alt form-control-lg',
-                                                       'placeholder'=> 'Enter your email',
-                                                       'data-fv-notempty' => true,
-                                                       'data-fv-blank' => true,
-                                                       'data-rule-required' => true,
-                                                       'data-fv-notempty-message' => trans('admin.emailIsRequired')
-                                                   ]) !!}
-                                            </div>
-                                            <div class="form-group">
-                                                {!!Form::password('password',
-                                                   [
-                                                       'class'=>'form-control form-control-alt form-control-lg',
-                                                       'placeholder'=> 'Enter your password',
-                                                       'data-fv-notempty' => true,
-                                                       'data-fv-blank' => true,
-                                                       'data-rule-required' => true,
-                                                       'data-fv-notempty-message' => trans('admin.passwordIsRequired')
-                                                   ]) !!}
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-
-                                            <div class="col-6">
-                                                <a href="{{ route('password.request') }}">{{ __('auth.Forget Your Password') }} ?</a>
-                                            </div>
-
-                                            <div class="col-6 text-right">
-                                                <button type="submit" class="btn btn-md btn-success">
-                                                    {{ __('auth.Sign in')  }}<i class="fa fa-fw fa-sign-in-alt mr-1"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        {!! Form::close() !!}
-                                    </div>
-                                </div>
+                {!! Form::open([ 'route' => "login", 'method' =>'POST', 'class'=> 'GlobalFormValidation form-element' ]) !!}
+                    <div class="form-group has-feedback">
+                        {!!Form::email('email', null,
+                           [
+                               'class'=>'form-control text-white plc-white',
+                               'placeholder'=> __('auth.enter_email'),
+                               'data-fv-notempty' => true,
+                               'data-fv-blank' => true,
+                               'data-rule-required' => true,
+                               'data-fv-notempty-message' => trans('auth.emailRequired')
+                           ]) !!}
+                        <span class="ion ion-email form-control-feedback text-white"></span>
+                    </div>
+                    <div class="form-group has-feedback">
+                        {!!Form::password('password',
+                           [
+                               'class'=>'form-control text-white plc-white',
+                               'placeholder'=> __('auth.enter_pass'),
+                               'data-fv-notempty' => true,
+                               'data-fv-blank' => true,
+                               'data-rule-required' => true,
+                               'data-fv-notempty-message' => trans('auth.passwordRequired'),
+                               'min-length'=>6
+                           ]) !!}
+                        <span class="ion ion-locked form-control-feedback text-white"></span>
+                    </div>
+                    <div class="row">
+                        <!-- /.col -->
+                        {{--<div class="col-6">
+                            <div class="fog-pwd">
+                                <a href="javascript:void(0)" class="text-white"><i class="ion ion-locked"></i> Forgot pwd?</a><br>
                             </div>
-                            <!-- END Sign In Block -->
+                        </div>--}}
+                        <div class="col-12">
+                            <div class="margin-top-30 text-center text-white">
+                                <p>Don't have an account? <a href="{{ route('register') }}" class="text-info m-l-5">Sign Up</a></p>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-12 text-center">
+                            <button type="submit" class="btn btn-rounded mt-10 btn-success">SIGN IN</button>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-12" style="margin-top: 5px;">
+                            @include('layouts.admin.include.alert_process')
                         </div>
                     </div>
-                </div>
+                {!! Form::close() !!}
+
             </div>
         </div>
-        <!-- END Footer -->
-    </main>
-    <!-- END Main Container -->
-    <div id="loader" style="display: none">
-        <div class="w-100 text-center"><i class="fa fa-fw fa-circle-notch fa-spin"></i></div>
+
     </div>
-</div>
+
 @endsection
 
 @section('PageJs')
