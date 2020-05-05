@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor_components/bootstrap/dist/css/bootstrap.css') }}">
     <!-- theme style -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/dev_bose.css') }}">
     <!-- CrmX Admin skins -->
     <link rel="stylesheet" href="{{ asset('assets/css/skin_color.css') }}">
     <link rel="stylesheet" type="text/css" href="{{asset('formValidation/css/formValidation.min.css')}}">

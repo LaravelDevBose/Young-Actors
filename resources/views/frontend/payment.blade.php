@@ -20,8 +20,8 @@
 
         <section class="content">
             <div class="row">
-                <div class="col-6 offset-3">
-                    {!! Form::open([ 'route' => "login", 'method' =>'POST', 'class'=> 'GlobalFormValidation' ]) !!}
+                <div class="col-12 col-lg-6 offset-lg-3">
+                    {!! Form::open([ 'route' => "order", 'method' =>'POST', 'class'=> 'GlobalFormValidation' ]) !!}
                         <div class="box">
                             <!-- /.box-header -->
                             <div class="box-body">
@@ -81,7 +81,7 @@
                                                 <div class="form-group">
                                                     <h5>Phone No. <span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                        {!!Form::text('phoneNo', null,
+                                                        {!!Form::text('phone_no', null,
                                                            [
                                                                'class'=>'form-control form-control-lg',
                                                                'placeholder'=> 'Your Phone No',
@@ -216,6 +216,7 @@
                                     <div class="col-10 offset-1 ">
                                         <div class="row">
                                             <div class="col-12">
+                                                <input type="hidden" name="payment_token" id="payment_token">
                                                 <div class="form-group">
 
                                                     <div class="controls">
@@ -223,12 +224,16 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-6 offset-6">
+                                            <div class="col-8 offset-4">
                                                 <div class="text-xs-right">
-                                                    <button type="submit" class="btn btn-rounded btn-info btn-block btn-lg" id="submit-button">Complete Order</button>
+                                                    <button type="submit" class="btn btn-rounded btn-info btn-block btn-lg" id="submit-button">Complete Order (25$)</button>
                                                 </div>
                                             </div>
+                                            <div class="col-12" style="margin-top: 5px;">
+                                                @include('layouts.frontend.include.alert_process')
+                                            </div>
                                         </div>
+
 
                                     </div>
                                     <!-- /.col -->
@@ -254,7 +259,6 @@
     <script src="{{ asset('assets/vendor_components/select2/dist/js/select2.full.js') }}"></script>
 
     <script src="https://js.stripe.com/v3/"></script>
-
     <script>
         const stripe = Stripe('{{env('STRIPE_PUBLIC')}}');
 
@@ -267,19 +271,24 @@
         const cardButton = document.getElementById('submit-button');
 
         cardButton.addEventListener('click', async (e) => {
-            stripe.createToken(cardElement).then(function (result) {
-                if (result.error) {
-                    console.log(result.error);
-                    dangerToast(result.error.message);
-                    e.preventDefault();
-                    return false;
-                } else {
-                    $('#payment_token').val(result.token.id);
-                    $('#form').find('button[type="button"]').prop('disabled', 'disabled').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>\n' +
-                        '  Loading...');
-                    $('#form').submit();
+            e.preventDefault();
+            const { paymentMethod, error } = await stripe.createPaymentMethod(
+                'card', cardElement, {
+                    billing_details: { name: cardHolderName.value }
                 }
-            });
+            );
+
+            if (error) {
+                // Display "error.message" to the user...
+                console.log(error);
+                return false;
+            } else {
+                $('#payment_token').val(paymentMethod.id);
+                console.log('handling success', paymentMethod.id);
+                $('.GlobalFormValidation').submit();
+                return true;
+                // The card has been verified successfully...
+            }
         });
     </script>
 @endsection

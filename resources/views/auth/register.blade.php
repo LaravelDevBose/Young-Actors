@@ -82,6 +82,9 @@
                         <div class="col-12 text-center">
                             <button type="submit" class="btn btn-rounded mt-10 btn-success">SIGN UP</button>
                         </div>
+                        <div class="col-12" style="margin-top: 5px;">
+                            @include('layouts.frontend.include.alert_process')
+                        </div>
                         <!-- /.col -->
                     </div>
                 {!! Form::close() !!}

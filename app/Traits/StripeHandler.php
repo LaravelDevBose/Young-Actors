@@ -47,6 +47,11 @@ trait StripeHandler
         }
     }
 
+    private function create_customer()
+    {
+
+    }
+
     public function charge($source, $amount, $description, $email)
     {
         Stripe::setApiKey(env('STRIPE_SECRET'));

@@ -58,8 +58,8 @@
                             <button type="submit" class="btn btn-rounded mt-10 btn-success">SIGN IN</button>
                         </div>
                         <!-- /.col -->
-                        <div class="col-sm-12" style="margin-top: 5px;">
-                            @include('layouts.admin.include.alert_process')
+                        <div class="col-12" style="margin-top: 5px;">
+                            @include('layouts.frontend.include.alert_process')
                         </div>
                     </div>
                 {!! Form::close() !!}

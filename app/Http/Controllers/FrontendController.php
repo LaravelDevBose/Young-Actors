@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Traits\JsonResponse;
+use App\Traits\StripeHandler;
 use App\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -13,6 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class FrontendController extends Controller
 {
+    use StripeHandler;
     public function index(){
 
     }
@@ -31,8 +33,8 @@ class FrontendController extends Controller
         $validator = Validator::make($request->all(),[
             'name'=> 'required|string|max:255',
             'email'=> 'required|string|email|max:255|unique:users',
-            'user_name'=> 'required|string|max:255|user_name|unique:users',
-            'phoneNo'=>'required|string',
+            'user_name'=> 'required|string|max:255|unique:users',
+            'phone_no'=>'required|string',
             'password'=>'required|string|min:6|confirmed',
             'country'=>'required|string',
             'state'=>'required|string',
@@ -40,28 +42,32 @@ class FrontendController extends Controller
             'city'=>'required|string',
             'postal_code'=>'required|string',
             'payment_token'=>'required|string',
-            'amount'=>'required',
 
         ]);
 
         if ($validator->passes()) {
             try {
                 DB::beginTransaction();
-
                 $user = User::create([
                     'name'=>$request->name,
                     'email'=>$request->email,
                     'user_name'=>$request->user_name,
-                    'phoneNo'=>$request->phoneNo,
+                    'phone_no'=>$request->phone_no,
                     'password'=>Hash::make($request->password),
                     'role'=> User::ROLE['Member'],
                     'status'=>config('app.active'),
                 ]);
-
                 if (!empty($user)) {
-                    DB::commit();
-                    return JsonResponse::allResponse('success', Response::HTTP_OK,
-                        __('admin.Category Updated Succesfully'), route('admin.category.index'));
+                    $user->newSubscription('main', 'young_actors_daily')
+                        ->create($request->payment_token,
+                            [ 'name'=>$user->name
+                            ]);
+                    if(!empty($user)){
+                        DB::commit();
+                        return JsonResponse::allResponse('success', Response::HTTP_OK, 'Order Successfully Complete', route('login'));
+                    }else {
+                        throw new Exception('Subscription Not Created.', Response::HTTP_BAD_REQUEST);
+                    }
                 } else {
                     throw new Exception('Invalid information', Response::HTTP_BAD_REQUEST);
                 }
