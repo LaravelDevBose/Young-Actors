@@ -17,6 +17,8 @@ Route::get('/', function () {
     return redirect('login');
 })->name('index');
 
+Route::get('/payment', 'FrontendController@payment');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

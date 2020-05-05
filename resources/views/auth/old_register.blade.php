@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.frontend.app')
 @section('title', __('auth.Sign Up'))
 @section('BgImage', asset('images/auth_bg.jpg'))
 @section('PageCss')

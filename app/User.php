@@ -13,7 +13,6 @@ class User extends Authenticatable
     const ROLE = [
         'Admin'=>1,
         'Member'=>2,
-        'Customer'=>3
     ];
 
     const STATUS=[
