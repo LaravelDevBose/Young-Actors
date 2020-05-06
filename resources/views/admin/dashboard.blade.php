@@ -2,6 +2,18 @@
 
 @section('title', __('admin.menu.dashboard'))
 
+@section('PageCss')
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="{{ asset('assets/vendor_components/bootstrap-daterangepicker/daterangepicker.css') }}">
+    <!-- owlcarousel-->
+    <link rel="stylesheet" href="{{ asset('assets/vendor_components/OwlCarousel2/dist/assets/owl.carousel.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor_components/OwlCarousel2/dist/assets/owl.theme.default.css') }}">
+    <!-- Chartist-->
+    <link rel="stylesheet" href="{{ asset('assets/vendor_components/chartist-js-develop/chartist.css') }}">
+    <!-- c3 CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor_components/c3/c3.min.css') }}">
+@endsection
+
 @section('mainContainer')
     <div class="content-wrapper">
         <div class="container-full">
@@ -10,17 +22,6 @@
                 <div class="d-flex align-items-center">
                     <div class="mr-auto">
                         <h3 class="page-title br-0">Dashboard</h3>
-                    </div>
-                    <div class="right-title w-170">
-					<span class="subheader_daterange font-weight-600" id="dashboard_daterangepicker">
-						<span class="subheader_daterange-label">
-							<span class="subheader_daterange-title"></span>
-							<span class="subheader_daterange-date text-primary"></span>
-						</span>
-						<a href="#" class="btn btn-rounded btn-sm btn-primary">
-							<i class="fa fa-angle-down"></i>
-						</a>
-					</span>
                     </div>
                 </div>
             </div>
@@ -37,7 +38,7 @@
                                         <p class="text-fade mb-0">Sales Today </p>
                                     </div>
                                     <div class="icon">
-                                        <i class="fa fa-truck bg-success mr-0"></i>
+                                        <i class="fa fa-dollar bg-success mr-0"></i>
                                     </div>
                                 </div>
                             </div>
@@ -48,11 +49,11 @@
                             <div class="box-body p-40">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
-                                        <h2 class="my-0 font-weight-700">27.424</h2>
-                                        <p class="text-fade mb-0">Visitors Today</p>
+                                        <h2 class="my-0 font-weight-700">$27.424</h2>
+                                        <p class="text-fade mb-0">Total Sales</p>
                                     </div>
                                     <div class="icon">
-                                        <i class="fa fa-bolt bg-warning mr-0"></i>
+                                        <i class="fa fa-dollar bg-warning mr-0"></i>
                                     </div>
                                 </div>
                             </div>
@@ -63,11 +64,11 @@
                             <div class="box-body p-40">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div>
-                                        <h2 class="my-0 font-weight-700">$ 29.200</h2>
-                                        <p class="text-fade mb-0">Total Earnings</p>
+                                        <h2 class="my-0 font-weight-700">29</h2>
+                                        <p class="text-fade mb-0">Total Members</p>
                                     </div>
                                     <div class="icon">
-                                        <i class="fa fa-shopping-cart bg-danger mr-0"></i>
+                                        <i class="fa fa-users bg-danger mr-0"></i>
                                     </div>
                                 </div>
                             </div>
@@ -127,4 +128,20 @@
 @endsection
 
 @section('PageJquery')
+    <!-- Plugin -->
+    <script src="{{ asset('assets/vendor_components/apexcharts-bundle/irregular-data-series.js') }}"></script>
+    <script src="{{ asset('assets/vendor_components/apexcharts-bundle/dist/apexcharts.js') }}"></script>
+    <script src="{{ asset('assets/vendor_components/zingchart_branded_version/zingchart.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor_components/moment/min/moment.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor_components/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+
+
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/maps.js"></script>
+    <script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/dataviz.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
+
+    <script src="{{ asset('assets/js/pages/dashboard.js') }}"></script>
 @endsection

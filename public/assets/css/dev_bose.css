@@ -6,3 +6,59 @@
 .hidden{
     display: none;
 }
+
+.nav-item.active .nav-link{
+    color: rgba(255, 255, 255, 1)
+}
+.nav-item .nav-link{
+    color: rgba(255, 255, 255, .7)
+}
+.section-container{
+    position: relative;
+    background:linear-gradient(#a2d8ff, #fbbefe);
+}
+.section-container svg{
+    position: absolute;
+    bottom: -50px;
+}
+.hdr_div {
+    background: url(bg-img.png);
+    background-repeat: no-repeat;
+    background-position: 160% 40%;
+    background-size: 60%;
+}
+.grdient-bg{
+    background:linear-gradient(#fbbefe, #a2d8ff);
+}
+.bg{
+    background: url('bg-img.png');
+    background-repeat: no-repeat;
+    background-position: 160% 40%;
+    background-size: 60%;
+}
+
+.learn-section{
+    z-index: 1;
+    position: relative;
+}
+.learn-section .bg{
+    padding-bottom: 100px!important;
+}
+.section-cn{
+    position: relative;
+}
+.section-cn svg{
+    position: absolute;
+    top: -300px;
+}
+.embed-responsive-cn{
+    border-radius: 10px;
+    padding: 13px;
+    border: 3px dashed #333;
+}
+.embed-responsive{
+    border-radius: 10px
+}
+.section-cont svg{
+
+}

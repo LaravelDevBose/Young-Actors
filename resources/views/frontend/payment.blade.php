@@ -11,9 +11,9 @@
     <div class="container-full">
         <!-- Content Header (Page header) -->
         <div class="content-header">
-            <div class="d-flex align-items-center">
-                <div class="mr-auto">
-                    <h3 class="page-title br-0">Dashboard</h3>
+            <div class="d-flex align-items-center text-center">
+                <div class="m-auto">
+                    <h3 class="page-title br-0">Order Page</h3>
                 </div>
             </div>
         </div>

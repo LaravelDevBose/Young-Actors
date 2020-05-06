@@ -13,11 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect('payment.page');
-})->name('index');
+Route::get('/', 'FrontendController@index')->name('index');
 
-Route::get('/payment', 'FrontendController@payment')->name('payment.page');
+Route::get('/order/page', 'FrontendController@payment')->name('order.page');
 Route::post('/order', 'FrontendController@order')->name('order');
 
 Auth::routes();

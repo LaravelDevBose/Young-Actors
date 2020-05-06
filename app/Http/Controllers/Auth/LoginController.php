@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\Traits\JsonResponse;
 use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
@@ -43,46 +46,44 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $this->validateLogin($request);
+        $validation = Validator::make($request->all(),[
+            'email'=>'required',
+            'password'=>'required|min:6',
+        ]);
 
-        if ($this->attemptLogin($request)) {
-            return $this->sendLoginResponse($request);
-        }
+        if($validation->passes()){
+            //attempt to log the user in
+            $credentials = [
+                'email'=>$request->email,
+                'password'=>$request->password,
+                'status'=>config('app.active'),
+            ];
 
-        if ($request->expectsJson()) {
-            return response()->json([
-                'status' => 'error',
-                'message' => __('These credentials do not match our records.'),
-            ]);
-        } else {
-            return $this->sendFailedLoginResponse($request);
-        }
-    }
+            if (Auth::guard('web')->attempt($credentials, $request->remember)) {
+                if (Auth::user()->role == User::ROLE['Admin']) {
+                    return JsonResponse::allResponse(
+                        'success',
+                        Response::HTTP_OK,
+                        __('customer.Admin successfully logged in.'),
+                        route('admin.dashboard')
+                    );
 
-    protected function sendLoginResponse(Request $request)
-    {
-        $request->session()->regenerate();
+                }else {
+                    return JsonResponse::allResponse(
+                        'success',
+                        Response::HTTP_OK,
+                        __('customer.User successfully logged in.'),
+                        route('member.dashboard')
+                    );
+                }
 
-        $this->clearLoginAttempts($request);
-
-        if ($request->ajax() || $request->wantsJson()) {
-            if (Auth::user()->role == User::ROLE['Admin']) {
-                return response()->json([
-                    'status' => 'success',
-                    'message' => __('customer.Admin successfully logged in.'),
-                    'url' => route("admin.dashboard")
-                ]);
-            } else{
-                return response()->json([
-                    'status' => 'success',
-                    'message' =>__('customer.User successfully logged in.'),
-                    'url' => route( 'member.dashboard')
-                ]);
+            }else {
+                return JsonResponse::allResponse('error', Response::HTTP_BAD_REQUEST, __('auth.failed'));
             }
 
+        }{
+            $errors = array_values($validation->errors()->getMessages());
+            return JsonResponse::validationResponse($errors);
         }
-
-        return $this->authenticated($request, $this->guard()->user())
-            ?: redirect()->intended($this->redirectPath());
     }
 }

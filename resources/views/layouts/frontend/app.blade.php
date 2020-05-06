@@ -23,7 +23,12 @@
 <body class="hold-transition light-skin sidebar-mini theme-classic fixed">
 
 <div class="wrapper">
-    @include('layouts.frontend.include.header')
+    <div class="section-container">
+        <section class="hdr_div">
+            @include('layouts.frontend.include.header')
+        </section>
+    </div>
+
     @yield('mainContainer')
     @include('layouts.frontend.include.footer')
 </div>

@@ -10,22 +10,17 @@
 
     <!-- Bootstrap 4.0-->
     <link rel="stylesheet" href="{{ asset('assets/vendor_components/bootstrap/dist/css/bootstrap.css') }}">
-    <!-- daterange picker -->
-    <link rel="stylesheet" href="{{ asset('assets/vendor_components/bootstrap-daterangepicker/daterangepicker.css') }}">
-    <!-- owlcarousel-->
-    <link rel="stylesheet" href="{{ asset('assets/vendor_components/OwlCarousel2/dist/assets/owl.carousel.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/vendor_components/OwlCarousel2/dist/assets/owl.theme.default.css') }}">
-    <!-- Chartist-->
-    <link rel="stylesheet" href="{{ asset('assets/vendor_components/chartist-js-develop/chartist.css') }}">
-    <!-- c3 CSS -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor_components/c3/c3.min.css') }}">
+    @yield('PageCss')
     <!-- theme style -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <!-- CrmX Admin skins -->
     <link rel="stylesheet" href="{{ asset('assets/css/skin_color.css') }}">
     <link rel="stylesheet" type="text/css" href="{{asset('formValidation/css/formValidation.min.css')}}">
-
-    @yield('PageCss')
+    <style>
+        .hidden{
+            display: none;
+        }
+    </style>
 
 </head>
 <body class="hold-transition light-skin sidebar-mini theme-classic fixed">
@@ -38,7 +33,9 @@
     @include('layouts.admin.include.overlay')
 </div>
     @include('layouts.admin.include.modals')
-
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+    @csrf
+</form>
 
 <!-- js -->
 <script src="{{ asset('assets/vendor_components/jquery-3.3.1/jquery-3.3.1.js') }}"></script>
@@ -48,23 +45,12 @@
 <script src="{{ asset('assets/vendor_components/jquery-slimscroll/jquery.slimscroll.js') }}"></script>
 <script src="{{ asset('assets/vendor_components/fastclick/lib/fastclick.js') }}"></script>
 
-<!-- Plugin -->
-<script src="{{ asset('assets/vendor_components/apexcharts-bundle/irregular-data-series.js') }}"></script>
-<script src="{{ asset('assets/vendor_components/apexcharts-bundle/dist/apexcharts.js') }}"></script>
-<script src="{{ asset('assets/vendor_components/zingchart_branded_version/zingchart.min.js') }}"></script>
-<script src="{{ asset('assets/vendor_components/moment/min/moment.min.js') }}"></script>
-<script src="{{ asset('assets/vendor_components/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
-<script src="https://www.amcharts.com/lib/4/core.js"></script>
-<script src="https://www.amcharts.com/lib/4/maps.js"></script>
-<script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
-<script src="https://www.amcharts.com/lib/4/themes/dataviz.js"></script>
-<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 
 <!-- CrmX Admin App -->
 <script src="{{ asset('assets/js/template.js') }}"></script>
-<script src="{{ asset('assets/js/pages/dashboard.js') }}"></script>
-<script src="{{ asset('assets/js/demo.js') }}"></script>
 
+<script src="{{ asset('assets/js/demo.js') }}"></script>
+@yield('PageJquery')
 <script>
     $.ajaxSetup({
         headers: {
@@ -78,6 +64,6 @@
 {!! Html::script('vendor/fileupload/jquery.fileuploadmulti.min.js') !!}
 {!! Html::script('vendor/fileupload/img_saving_gallery.js') !!}
 
-@yield('PageJquery')
+
 </body>
 </html>

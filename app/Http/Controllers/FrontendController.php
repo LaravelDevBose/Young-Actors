@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Traits\JsonResponse;
-use App\Traits\StripeHandler;
 use App\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -14,9 +13,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 class FrontendController extends Controller
 {
-    use StripeHandler;
-    public function index(){
 
+    public function index(){
+        return view('frontend.index');
     }
 
     public function contact_us()
