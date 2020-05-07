@@ -18,6 +18,8 @@ class UsersTableSeeder extends Seeder
             'role'=> \App\User::ROLE['Admin'],
             'status'=> config('app.active'),
             'email_verified_at'=>\Carbon\Carbon::now(),
+            'user_name'=>'admin',
+            'phone_no'=>'123456789'
         ]);
     }
 }
