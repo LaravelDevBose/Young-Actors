@@ -19,7 +19,7 @@ class UsersTableSeeder extends Seeder
             'status'=> config('app.active'),
             'email_verified_at'=>\Carbon\Carbon::now(),
             'user_name'=>'admin',
-            'phone_no'=>'123456789'
+            'phone_no'=>'1234567890'
         ]);
     }
 }
