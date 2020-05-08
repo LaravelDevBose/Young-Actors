@@ -1,68 +1,70 @@
-<!-- Header -->
-<header id="page-header">
-    <!-- Header Content -->
-    <div class="content-header bg-warning">
-        <!-- Left Section -->
-        <div class="d-flex align-items-center">
-            <!-- Toggle Sidebar -->
-            <!-- Layout API, functionality initialized in Template._uiApiLayout()-->
-            <button type="button" class="btn btn-sm btn-dual mr-2 d-lg-none" data-toggle="layout" data-action="sidebar_toggle">
-                <i class="fa fa-fw fa-bars"></i>
-            </button>
-            <button type="button" class="btn btn-sm btn-dual mr-2 d-none d-lg-inline-block" data-toggle="layout" data-action="sidebar_mini_toggle">
-                <i class="fa fa-fw fa-ellipsis-v"></i>
-            </button>
+<header class="main-header">
+    <!-- Logo -->
+    <a href="{{ route('index') }}" class="logo">
+        <!-- mini logo -->
+        <div class="logo-mini">
+            <span class="light-logo"><img src="{{ asset('assets/images/logo-dark.png') }}" alt="logo"></span>
+            <span class="dark-logo"><img src=".{{ asset('assets/images/logo-dark.png') }}" alt="logo"></span>
         </div>
-        <!-- END Left Section -->
-
-        <!-- Right Section -->
-        <div class="d-flex align-items-center">
-            <!-- User Dropdown -->
-
-            <div class="dropdown d-inline-block ml-2">
-
-
-                <button type="button" class="btn btn-sm btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                   <i class="si si-user"></i>
-                    <span class="d-none d-sm-inline-block ml-1">{{ \Auth::user()->full_name }}</span>
-                    <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block"></i>
-                </button>
-
-                <div class="dropdown-menu dropdown-menu-right p-0 border-0 font-size-sm" aria-labelledby="page-header-user-dropdown">
-                    <div class="p-3 text-center bg-primary text-white d-block d-sm-none d-none d-sm-block d-md-none">
-                        {{ \Auth::user()->full_name }}
-                    </div>
-                    <div class="p-2">
-                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{ route('user.profile.index') }}">
-                            <span>{{ __('menu.update_profile') }}</span><i class="si si-settings ml-1"></i>
-                        </a>
-                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{ route('logout') }}"
-                           onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                            <span>{{__('menu.logout')}}</span><i class="si si-logout ml-1"></i>
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <!-- END User Dropdown -->
+        <!-- logo-->
+        <div class="logo-lg">
+            <span class="light-logo"><img src="{{ asset('assets/images/logo-dark-text.png') }}" alt="logo"></span>
+            <span class="dark-logo"><img src="{{ asset('assets/images/logo-dark-text.png') }}" alt="logo"></span>
         </div>
-        <!-- END Right Section -->
-    </div>
-    <!-- END Header Content -->
+    </a>
+    <!-- Header Navbar -->
+    <nav class="navbar navbar-static-top" style="background: #22b59a;">
+        <!-- Sidebar toggle button-->
+        <div>
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <i class="ti-align-left"></i>
+            </a>
 
-
-    <!-- Header Loader -->
-    <!-- Please check out the Loaders page under Components category to see examples of showing/hiding it -->
-    <div id="page-header-loader" class="overlay-header bg-white">
-        <div class="content-header">
-            <div class="w-100 text-center">
-                <i class="fa fa-fw fa-circle-notch fa-spin"></i>
-            </div>
+            <a href="#" data-provide="fullscreen" class="sidebar-toggle" title="Full Screen">
+                <i class="mdi mdi-crop-free"></i>
+            </a>
         </div>
-    </div>
-    <!-- END Header Loader -->
+
+        <div class="navbar-custom-menu r-side">
+            <ul class="nav navbar-nav">
+
+                <!-- User Account-->
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="{{ strtoupper(auth()->user()->name) }}">
+                        @if(auth()->user()->avatar)
+                            <img src="{{ auth()->user()->avatar->image_path }}" alt="{{ auth()->user()->user_name }}" class="user-image rounded-circle">
+                        @else
+                            <img src="{{ asset('images/avatar.jpg') }}" class="user-image rounded-circle" alt="{{ auth()->user()->user_name }}">
+                        @endif
+
+                    </a>
+                    <ul class="dropdown-menu animated flipInX">
+                        <!-- User image -->
+                        <li class="user-header bg-img" style="background: #22b59a; " data-overlay="3">
+                            <div class="flexbox align-self-center">
+                                @if(auth()->user()->avatar)
+                                    <img src="{{ auth()->user()->avatar->image_path }}" alt="{{ auth()->user()->user_name }}" class="float-left rounded-circle">
+                                @else
+                                    <img src="{{ asset('images/avatar.jpg') }}" class="float-left rounded-circle" alt="{{ auth()->user()->user_name }}">
+                                @endif
+                                <h4 class="user-name align-self-center">
+                                    <span>{{ strtoupper(auth()->user()->name) }}</span>
+                                    <br>
+                                    <small>{{ auth()->user()->email }}</small>
+                                </h4>
+                            </div>
+                        </li>
+                        <!-- Menu Body -->
+                        <li class="user-body">
+                            <a class="dropdown-item" href="{{ route('member.profile.page') }}"><i class="ion ion-settings"></i> Account Setting</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="ion-log-out"></i> Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
 </header>
-<!-- END Header -->
+

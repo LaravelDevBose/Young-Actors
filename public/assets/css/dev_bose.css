@@ -62,3 +62,87 @@
 .section-cont svg{
 
 }
+
+/*upload*/
+
+.uploadStyle {
+    border: 1px solid #77aabf69;
+    display: inline-block;
+    margin: 0 0px 10px;
+    position: relative;
+    background-color: #31c2fbe0;
+    border-radius: 3px;
+    box-shadow: 0px 2px 6px #eee;
+}
+.uploadStyle input {
+    cursor: pointer;
+    opacity: 0;
+    padding: 13px 0 0px;
+    width: 100%;
+}
+.uploadStyle > p {
+    position: absolute;
+    padding: 8px 0;
+    text-align: center;
+    width: 100%;
+    cursor: pointer;
+    color: white;
+}
+
+#GoodsReceiptform .ManageImagesGallery .uploadStyle{
+    margin: 0;
+}
+.GalleryNewImages:hover {
+    background-color: #4ac9fb;
+}
+
+.GalleryNewImages:hover a, .GalleryNewImages:hover i {
+    color: #052aea;
+}
+.Photo180 img {
+    width: 180px;
+}
+.loanFormHide{ display: none;}
+
+.itemTem h2 {
+    font-size: 16px;
+    margin: 20px 0 15px;
+}.itemTem {
+     float: left;
+     padding: 10px 10px 30px;
+     width: 100%;
+ }
+.rightTopSearch p {
+    margin-bottom: 0;
+}
+
+.sendSMSform, .filter, .single{
+    display: none;
+}.filter {
+     float: left;
+     margin: 0 0 30px;
+     width: 100%;
+ }
+
+
+.GalleryNewImages{
+    position: relative;
+    display: block;
+    padding: 5px 3px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin-bottom: 5px !important;
+}
+.GalleryNewImages p {
+    float: left;
+    margin: 0;
+}
+.GalleryNewImages i {
+    float: right;
+    margin: 0;
+    cursor: pointer;
+}
+
+.activeColor{
+    color: #0088ff;
+}

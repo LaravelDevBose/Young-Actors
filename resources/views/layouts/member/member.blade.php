@@ -6,12 +6,12 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Young Actors') }} | @yield('title')</title>
-	<link rel="shortcut icon" href="/assets/media/favicons/favicon.png">
+    <link rel="shortcut icon" href="/assets/media/favicons/favicon.png">
 
     <!-- Bootstrap 4.0-->
     <link rel="stylesheet" href="{{ asset('assets/vendor_components/bootstrap/dist/css/bootstrap.css') }}">
-    @yield('PageCss')
-    <!-- theme style -->
+@yield('PageCss')
+<!-- theme style -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <!-- CrmX Admin skins -->
     <link rel="stylesheet" href="{{ asset('assets/css/skin_color.css') }}">
@@ -26,13 +26,12 @@
 <body class="hold-transition light-skin sidebar-mini theme-classic fixed">
 
 <div class="wrapper">
-    @include('layouts.admin.include.header')
-    @include('layouts.admin.include.sidebar')
+    @include('layouts.member.include.header')
+    @include('layouts.member.include.sidebar')
     @yield('mainContainer')
-    @include('layouts.admin.include.footer')
-    @include('layouts.admin.include.overlay')
+    @include('layouts.member.include.footer')
 </div>
-    @include('layouts.admin.include.modals')
+
 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
     @csrf
 </form>

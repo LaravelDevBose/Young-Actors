@@ -1,10 +1,9 @@
 @extends('layouts.admin.admin')
 
-@section('title', 'Schedule Page')
+@section('title', 'Setting Page')
 
 @section('PageCss')
-    <link rel="stylesheet" href="{{ asset('assets/vendor_components/fullcalendar/fullcalendar.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/vendor_components/fullcalendar/fullcalendar.print.min.css') }}" media="print">
+
 @endsection
 
 @section('mainContainer')
@@ -55,19 +54,19 @@
                                     <!-- Tab panes -->
                                     <div class="tab-content" style="width: 90%;">
                                         <div class="tab-pane active" id="classUrl" role="tabpanel">
-                                            {!! Form::open([ 'route' => "login", 'method' =>'POST', 'class'=> 'GlobalFormValidation' ]) !!}
+                                            {!! Form::open([ 'route' => "admin.setting.class_url", 'method' =>'POST', 'class'=> 'GlobalFormValidation' ]) !!}
                                             <div class="row">
                                                 <div class="col-12">
                                                     <div class="form-group">
                                                         <h5>Full Path of Live Class Your <span class="text-danger">*</span></h5>
                                                         <div class="controls">
-                                                            {!!Form::textarea('class_url', null,
+                                                            {!!Form::textarea('class_url', !empty($classUrl)? $classUrl: '',
                                                                [
                                                                    'class'=>'form-control form-control-lg',
                                                                    'placeholder'=> 'Enter Live Class Url Here..',
                                                                    'required'=>true,
                                                                    'data-validation-required-message' => 'Class Url is Required',
-                                                                   'rows'=>3,
+                                                                   'rows'=>2,
                                                                ]) !!}
                                                         </div>
                                                     </div>
@@ -107,6 +106,5 @@
 
 @section('PageJquery')
 
-    <script src="{{ asset('assets/js/pages/validation.js') }}"></script>
-    <script src="{{ asset('assets/js/pages/form-validation.js') }}"></script>
+
 @endsection

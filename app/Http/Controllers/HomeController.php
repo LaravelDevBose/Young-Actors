@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TrainingVideo;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -39,6 +40,9 @@ class HomeController extends Controller
     }
 
     public function member_dashboard(){
-        return view('member.dashboard');
+        $trainingVideo = TrainingVideo::where('video_status', '!=', config('app.delete'))->first();
+        return view('member.dashboard', [
+            'trainingVideo'=>$trainingVideo
+        ]);
     }
 }

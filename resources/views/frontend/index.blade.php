@@ -2,72 +2,14 @@
 <html>
 <head>
     <title></title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-
-    <style type="text/css">
-
-        .nav-item.active .nav-link{
-            color: rgba(255, 255, 255, 1)
-        }
-        .nav-item .nav-link{
-            color: rgba(255, 255, 255, .7)
-        }
-        .section-container{
-            position: relative;
-            background:linear-gradient(#a2d8ff, #fbbefe);
-        }
-        .section-container svg{
-            position: absolute;
-            bottom: -50px;
-        }
-        .hdr_div {
-            background: url({{ asset('images/bg-img.png') }});
-            background-repeat: no-repeat;
-            background-position: 160% 40%;
-            background-size: 60%;
-        }
-        .grdient-bg{
-            background:linear-gradient(#fbbefe, #a2d8ff);
-        }
-        .bg{
-            background: url({{ asset("images/bg-img.png") }});
-            background-repeat: no-repeat;
-            background-position: 160% 40%;
-            background-size: 60%;
-        }
-
-        .learn-section{
-            z-index: 1;
-            position: relative;
-        }
-        .learn-section .bg{
-            padding-bottom: 100px!important;
-        }
-        .section-cn{
-            position: relative;
-        }
-        .section-cn svg{
-            position: absolute;
-            top: -300px;
-        }
-        .embed-responsive-cn{
-            border-radius: 10px;
-            padding: 13px;
-            border: 3px dashed #333;
-        }
-        .embed-responsive{
-            border-radius: 10px
-        }
-        .section-cont svg{
-
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" >
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" >
 </head>
 <body>
 
 <div class="section-container">
     <section class="hdr_div">
+
         @include('layouts.frontend.include.header')
 
         <div class="container">
@@ -83,13 +25,11 @@
             </div>
         </div>
     </section>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-        <path fill="#ffffff" fill-opacity="5" d="M0,128L48,128C96,128,192,128,288,138.7C384,149,480,171,576,197.3C672,224,768,256,864,250.7C960,245,1056,203,1152,170.7C1248,139,1344,117,1392,106.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 100 1440 320"><path fill="#ffffff" fill-opacity="5" d="M0,128L48,128C96,128,192,128,288,138.7C384,149,480,171,576,197.3C672,224,768,256,864,250.7C960,245,1056,203,1152,170.7C1248,139,1344,117,1392,106.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
 </div>
 
 
-<!---->
+
 <section class="py-5">
     <div class="container">
         <div class="row  align-items-center">
@@ -112,7 +52,7 @@
     </div>
 </section>
 
-<!---->
+
 <section class="mb-5" style="background-color:#9FD9FF">
     <div class="container" style="padding-top: 20px; height: 380px; margin-top: 30px">
         <p class="text-center" style="font-size: 30px; color: #191919; font-weight: 700; margin-bottom: 0;">Kids With Star Talent </p>
@@ -123,16 +63,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm">
-                    <img src="{{ asset('images/Screenshot.png') }}" alt="..." class="img-thumbnail">
+                    <img class="img-fluid" src="{{ asset('images/image-1.png') }}" alt="Image" >
                 </div>
                 <div class="col-sm">
-                    <img src="{{ asset('images/Screenshot1.png') }}" alt="..." class="img-thumbnail">
+                    <img class="img-fluid" src="{{ asset('images/image-2.png') }}" alt="Image" >
                 </div>
                 <div class="col-sm">
-                    <img src="{{ asset('images/Screenshot2.png') }}" alt="..." class="img-thumbnail">
+                    <img class="img-fluid" src="{{ asset('images/image-3.png') }}" alt="Image" >
                 </div>
                 <div class="col-sm">
-                    <img src="{{ asset('images/Screenshot3.png') }}" alt="..." class="img-thumbnail">
+                    <img class="img-fluid" src="{{ asset('images/image-4.png') }}" alt="Image" >
                 </div>
             </div>
         </div>
@@ -146,12 +86,12 @@
             <div class="row">
                 <div class="col-md-8">
                     <h2><strong>Who We Are</strong></h2>
-                    <h4 class=""> <strong>We are successful Hollywood teen actors and social media influencers. <br>
+                    <h5> <strong>We are successful Hollywood teen actors and social media influencers. <br>
                             Our mission is to inspire kids who are suffering from social isolation to "change their lens of perspective" and use this time at home to study, grow, and learn their craft. <br>
                             We will provide a fun and entertaining online acting mentorship forum that includes the opportunity to interact with and rehearse live scenes with real teen TV Stars. <br>
                             We are also going to invite some of our social media influencers to share their pathway to success and teach you some of the business side of being a young actor or influencer today.
 
-                            <br><br>-Young Actors On Acting, LLC.</strong></h4>
+                            <br><br>-Young Actors On Acting, LLC.</strong></h5>
                 </div>
                 <div class="col-md-4">
                     <img src="{{ asset('images/img-1.png') }}" alt="Image">

@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Models\Attachment;
+use App\Models\Notification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -68,5 +69,10 @@ class User extends Authenticatable
     public function avatar()
     {
         return $this->hasOne(Attachment::class, 'attachment_id', 'avatar_id');
+    }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class, 'user_id');
     }
 }

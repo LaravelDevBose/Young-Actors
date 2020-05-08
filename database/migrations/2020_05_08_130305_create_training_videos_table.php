@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTrainingRoomsTable extends Migration
+class CreateTrainingVideosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class CreateTrainingRoomsTable extends Migration
      */
     public function up()
     {
-        Schema::create('training_rooms', function (Blueprint $table) {
-            $table->id();
+        Schema::create('training_videos', function (Blueprint $table) {
+            $table->id('video_id');
+            $table->string('video_title');
+            $table->string('video_url');
+            $table->tinyInteger('video_status')->default(config('app.delete'));
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ class CreateTrainingRoomsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('training_rooms');
+        Schema::dropIfExists('training_videos');
     }
 }

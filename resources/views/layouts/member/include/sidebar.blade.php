@@ -1,33 +1,69 @@
-<nav id="sidebar" aria-label="Main Navigation">
-    <div class="content-header bg-white-5">
-        <a class="font-w600 text-dual" href="{{ route('home') }}">
-            <i class="fa fa-circle-notch text-primary"></i>
-            <span class="smini-hide"><span class="font-w700 font-size-h5">{{ __('customer.Title') }}</span></span>
-        </a>
-        <a class="d-lg-none text-dual ml-3" data-toggle="layout" data-action="sidebar_close" href="javascript:void(0)">
-            <i class="fa fa-times"></i>
-        </a>
-    </div>
-    <div class="content-side content-side-full">
-        <ul class="nav-main">
-            <li class="nav-main-item">
-                <a class="nav-main-link" href="{{ route('home') }}">
-                    <i class="nav-main-link-icon fa fa-tachometer-alt"></i>
-                    <span class="nav-main-link-name">{{ __('menu.dashboard') }}</span>
+<aside class="main-sidebar">
+    <!-- sidebar-->
+    <section class="sidebar">
+
+        <div class="user-profile">
+            <div class="ulogo">
+                <a href="{{ route('index') }}">
+                    <!-- logo for regular state and mobile devices -->
+                    <h3><b>{{ env('APP_NAME') }}</b></h3>
+                </a>
+            </div>
+            <div class="profile-pic">
+                @if(auth()->user()->avatar)
+                    <img src="{{ auth()->user()->avatar->image_path }}" alt="{{ auth()->user()->user_name }}" class="rounded-circle">
+                @else
+                    <img src="{{ asset('images/user.jpg') }}" alt="{{ auth()->user()->user_name }}" class="rounded-circle">
+                @endif
+                <div class="profile-info"><h4>{{ strtoupper(auth()->user()->name) }}</h4>
+                </div>
+            </div>
+        </div>
+
+        <!-- sidebar menu-->
+        <ul class="sidebar-menu" data-widget="tree">
+
+            <li class="">
+                <a href="{{ route('member.dashboard') }}">
+                    <i class="ti-dashboard"></i>
+                    <span>Dashboard</span>
                 </a>
             </li>
-            <li class="nav-main-item">
-                <a class="nav-main-link" href="{{ route('user.game.index') }}">
-                    <i class="nav-main-link-icon fas fa-folder-open"></i>
-                    <span class="nav-main-link-name">{{__('menu.game_list')}}</span>
+            <li class="">
+                <a href="{{ route('member.profile.page') }}">
+                    <i class="ti-calendar"></i>
+                    <span>My Profile</span>
                 </a>
             </li>
-            <li class="nav-main-item">
-                <a class="nav-main-link" href="{{ route('user.post.index') }}">
-                    <i class="nav-main-link-icon fas fa-list"></i>
-                    <span class="nav-main-link-name">{{ __('menu.post_list') }}</span>
+
+            <li class="">
+                <a href="{{ route('member.class.room') }}">
+                    <i class="ti-calendar"></i>
+                    <span>Live Class Room</span>
                 </a>
             </li>
+
+            <li class="">
+                <a href="{{ route('member.training.room') }}">
+                    <i class="ti-user"></i>
+                    <span>Training Room</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="ti-dashboard"></i>
+                    <span>Download</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('logout') }}"
+                   onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                    <i class="ti-power-off"></i>
+                    <span>Sign Out</span>
+                </a>
+            </li>
+
         </ul>
-    </div>
-</nav>
+    </section>
+</aside>
